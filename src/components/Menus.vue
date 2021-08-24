@@ -21,8 +21,8 @@ export default {
         height: 100vh;
         background-image: url('https://cdn.zeplin.io/60d53e6d548b21b2ce573324/assets/abe58885-e813-49ed-8b8b-43b83c0534c8.png');
         background-size: cover;    
-        padding: 190px 50px 50px 50px;
+        padding: 160px 0px 60px 20px;
         display: flex;
-      
+        flex-wrap: wrap;
     }
 </style>

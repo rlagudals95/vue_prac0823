@@ -2,15 +2,17 @@
   <div class="home">
     <div class="container">
       <Menus v-for="(category, index ) in categories" :key="index" :category="category" />
+      <Basket />
     </div>
   </div>
 </template>
 
 <script>
 import Menus from "../components/Menus.vue"
+import Basket from "../components/Basket.vue"
 export default {
   name: "Home",
-  components: {Menus},
+  components: {Menus,Basket},
   computed : {
     categories() {
       return this.$store.state.categories;
@@ -26,6 +28,7 @@ export default {
    
     background-size: cover; */
        width: 100%;
+       height: 100%;
   }
 
 </style>

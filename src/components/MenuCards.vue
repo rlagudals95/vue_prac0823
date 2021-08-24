@@ -20,17 +20,19 @@ export default {
 
 <style lang="scss" scoped>
      .card-container {
-        height: 271.57px;
-        width:  211.67px;
+        height: 250.50px;
+        width:   220.50px	;	
         background-color: #000000;
         margin: 7px;
         border-radius: 8px;
         overflow: hidden;
+        cursor: pointer;
 
         .item-img {
           object-fit: fit;       
           width: 100%;
-          height: 63%;
+          height:  158.70px;
+          margin-bottom: 15px;
         }
 
         .item-info {
@@ -39,8 +41,11 @@ export default {
           color: white;
           margin: auto ;
 
+          .item-desc {
+           
+          }
           .item-name {
-            
+            font-size: 15px;
           }
 
           .item-price {
