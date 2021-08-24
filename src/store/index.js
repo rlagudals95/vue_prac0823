@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    basket: null,
     categories: [
       {
         categoryId: 1,
@@ -116,7 +117,11 @@ export default new Vuex.Store({
       },
     ],
   },
-  mutations: {},
+  mutations: {
+    basketToggle() {
+      this.state.basket = !this.state.basket;
+    },
+  },
   actions: {},
   modules: {},
 });

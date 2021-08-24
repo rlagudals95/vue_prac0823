@@ -13,9 +13,9 @@
       <div class="branch2">
         구도로 떡볶이
       </div>
-      <div class="bottom-nav">
+      <!-- <div class="bottom-nav">
           <div class="bucket-btn"></div>
-      </div>
+      </div> -->
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
         background-color: #ff0000;
         position: fixed;
         top: 0px;
-        z-index: 99;
+        z-index: 201;
         
         .branch {
             background-color: #ff0000;

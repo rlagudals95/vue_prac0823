@@ -1,5 +1,5 @@
 <template>
-    <div class="basket-wrap">
+    <div class="basket-wrap" v-if="basket">
         <div class="bucket">
             <div class="title">장바구니</div>
             <div class="basket-menus">
@@ -35,15 +35,19 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
-    name: 'Basket'
-    
+    name: 'Basket',
+    computed: {
+        ...mapState(['basket'])
+    }
 }
 </script>
 
 <style lang="scss" scoped>
     .basket-wrap{
-        z-index: 98;
+        z-index: 200;
         width: 26%;
         height: 100%;
         background-color: #f5f5f5;

@@ -14,7 +14,7 @@
 export default {
   name: "MenuCards",
   props: ["categoryItem"],
-
+  
 }
 </script>
 

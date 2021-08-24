@@ -3,6 +3,7 @@
     <div class="app">  
       <Navbar/>
       <router-view />
+      <BottomNav/>
     </div>
   </div>
 </template>
@@ -11,10 +12,11 @@
 
 //import Navigation from "./components/Navigation.vue"
 import Navbar from "./components/Navbar.vue"
+import BottomNav from "./components/BottomNav.vue"
 
 export default {
   name: "app",
-  components: {Navbar},
+  components: {Navbar,BottomNav},
   data() {
     return {
 
