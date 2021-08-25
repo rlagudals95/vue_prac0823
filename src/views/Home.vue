@@ -10,9 +10,16 @@
 <script>
 import Menus from "../components/Menus.vue"
 import Basket from "../components/Basket.vue"
+//import {mapMutations} from "vuex"
 export default {
   name: "Home",
   components: {Menus,Basket},
+  methods: {
+    // ...mapMutations({setSelectedMenu:'setSelectedMenu'}),
+    // setSelectedMenu () {
+    //   this.$store.commit("setSelectedMenu")
+    // }
+  },
   computed : {
     categories() {
       return this.$store.state.categories;

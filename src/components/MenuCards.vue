@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container" @click="setSelectedMenu(categoryItem)">
       <img class="item-img" :src="categoryItem.itemImageUrl"/>
       <div class="item-info">
           <div class="item-desc">
@@ -11,17 +11,24 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex"
+
 export default {
   name: "MenuCards",
   props: ["categoryItem"],
-  
+  methods: {
+    ...mapActions(['setSelectedMenu'])
+  },
+  computed : {
+    ...mapState(['selectedMenus'])
+  }
 }
 </script>
 
 <style lang="scss" scoped>
      .card-container {
-        height: 250.50px;
-        width:   220.50px	;	
+        height: 334.00px;
+        width:  294.00px;	
         background-color: #000000;
         margin: 7px;
         border-radius: 8px;
@@ -31,7 +38,7 @@ export default {
         .item-img {
           object-fit: fit;       
           width: 100%;
-          height:  158.70px;
+          height:  212px;
           margin-bottom: 15px;
         }
 
@@ -45,12 +52,13 @@ export default {
            
           }
           .item-name {
-            font-size: 15px;
+            font-size: 19px;
           }
 
           .item-price {
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 10px;
+            font-size: 19px;
           }
         }
     }

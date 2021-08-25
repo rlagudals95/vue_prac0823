@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     basket: null,
+    selectedMenus: [],
     categories: [
       {
         categoryId: 1,
@@ -121,7 +122,30 @@ export default new Vuex.Store({
     basketToggle() {
       this.state.basket = !this.state.basket;
     },
+    SET_SELETED_MENU(state, selcetedMenu) {
+      state.selectedMenus.push(selcetedMenu);
+    },
+    // CANCEL_MENU(state, id) {
+    //   state.selectedMenus = state.selectedMenus.filter((menu) => {
+    //     console.log(menu.itemId, id);
+    //     menu.itemId !== id;
+    //   });
+    // },
+
+    CANCEL_MENU(state, id) {
+      state.selectedMenus = state.selectedMenus.filter(
+        (menu) => menu.itemId !== id
+      );
+    },
   },
-  actions: {},
+  actions: {
+    setSelectedMenu({ commit }, selectedMenus) {
+      commit("SET_SELETED_MENU", selectedMenus);
+    },
+    cancelMenu({ commit }, id) {
+      commit("CANCEL_MENU", id);
+    },
+  },
+
   modules: {},
 });

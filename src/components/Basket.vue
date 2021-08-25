@@ -1,25 +1,19 @@
 <template>
     <div class="basket-wrap" v-if="basket">
-        <div class="bucket">
-            <div class="title">장바구니</div>
+        <div class="title">장바구니</div>
+        <!--  -->
+        <div class="bucket" v-for="(selectedMenu, index) in selectedMenus" :key="index" >
             <div class="basket-menus">
-                <p class="menu-name">부산국제시장 떡볶이<br>(밀가래떡)</p>
-                <div class="delete-btn">삭제</div>   
+                <p class="menu-name">{{selectedMenu.itemName}}</p>
+                <div class="delete-btn" @click="cancelMenu(selectedMenu.itemId)">삭제</div>   
             </div>
             <div class="menu-options">
                 <div class="option">
                     <div class="bucket-category">기본</div>  
-                    <div class="bucket-count">1개 </div>
-                    <div class="bucket-price">8,900원</div>
+                    <div class="bucket-count">1개</div>
+                    <div class="bucket-price">{{selectedMenu.itemPrice}}</div>
                 </div>
             </div>
-            <!-- <div class="sub-options">
-                <div class="option">
-                    <div class="bucket-category">기본</div>  
-                    <div class="bucket-count">1개 </div>
-                    <div class="bucket-price">8,900원</div>
-                </div>
-            </div> -->
             <div class="price">
                 <div class="counter-btns">
                     <div class="increase count-btn">+</div>
@@ -29,18 +23,29 @@
                 <div class="bucket-total">
                     15,100원
                 </div>
-            </div>
+            </div>   
+        </div>
+        <!--  -->
+        <div class="bottom-btns">
+                <div class="close-btn" @click="basketToggle"><p>닫기</p></div>
+                <div class="order-btn"><p>주문하기</p></div>
         </div>
     </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapActions} from 'vuex'
 
 export default {
     name: 'Basket',
     computed: {
-        ...mapState(['basket'])
+        ...mapState(['basket','selectedMenus'])
+    },
+    methods: {
+        ...mapActions(['cancelMenu']),
+        basketToggle() {
+            this.$store.commit('basketToggle')
+        }
     }
 }
 </script>
@@ -60,21 +65,24 @@ export default {
         flex-direction: column;
         padding: 30px 5px; 
         border-bottom: 2px solid #cccccc;
+        transition : 2.5s ease all;
 
-        .bucket {
-            height: auto;
-            border-bottom: 2px solid #cccccc;
-            width: 90%;
-        }
-
+        
         .title {
             margin-top: 30.00px;
             font-size: 24px;
             color: #000000;
             font-weight: bold;
             width: 100%;
+            margin-left: 30px;
         }
 
+
+        .bucket {
+            height: auto;
+            border-bottom: 2px solid #cccccc;
+            width: 90%;
+        }
         .basket-menus{
             margin-top: 30px;
             width: 100%;
@@ -152,6 +160,34 @@ export default {
                  font-size: 25px;
                  font-weight: bold;
                  color: #fc0000;
+
+
+            }
+        }
+
+        .bottom-btns {
+            background-color: #fc0000;
+            height: 60px;
+            width: 26%;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            color:white;
+            display: flex;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            .close-btn{
+                background-color: #636363;
+                flex:1;
+            }
+            .order-btn{
+                background-color: #fc0000;
+                flex:2;
+            }
+            p{
+                margin: 15px 0px;
+                font-size: 24px;
             }
         }
 

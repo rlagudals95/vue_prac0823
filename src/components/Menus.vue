@@ -10,6 +10,8 @@ export default {
  name: 'menus',
  components: {MenuCards},
  props: ['category'],
+ methods: {
+ }
 }
 </script>
 
