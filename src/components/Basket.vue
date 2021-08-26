@@ -11,42 +11,60 @@
                 <div class="option">
                     <div class="bucket-category">기본</div>  
                     <div class="bucket-count">1개</div>
-                    <div class="bucket-price">{{selectedMenu.itemPrice}}</div>
+                    <div class="bucket-price">{{selectedMenu.itemPrice | comma}}원</div>
                 </div>
             </div>
             <div class="price">
                 <div class="counter-btns">
                     <div class="increase count-btn">+</div>
-                    <div class="total-count">1개</div>
+                    <div class="total-count">{{cnt}}</div>
                     <div class="decrease count-btn">-</div>
                 </div>
                 <div class="bucket-total">
-                    15,100원
+                    {{selectedMenu.itemPrice | comma}}원
                 </div>
             </div>   
         </div>
         <!--  -->
+        <div class="total-menu">
+            <div class="basket-cnt">총 {{selectedMenus.length}}가지</div>
+            <!-- <div class="basket-price">합계 {{basketTotal | comma}}원</div> -->
+            <div class="basket-price">합계 {{basketTotal | comma}}원</div>
+        </div>
         <div class="bottom-btns">
                 <div class="close-btn" @click="basketToggle"><p>닫기</p></div>
-                <div class="order-btn"><p>주문하기</p></div>
+                <div class="order-btn" @click="completeOrder"><p>주문하기</p></div>
         </div>
     </div>
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions,mapMutations} from 'vuex'
 
 export default {
     name: 'Basket',
     computed: {
-        ...mapState(['basket','selectedMenus'])
+        ...mapState(['basket','selectedMenus','basketTotal','categories'])
     },
     methods: {
-        ...mapActions(['cancelMenu']),
+        ...mapActions(['cancelMenu','orderMenu']),
+        ...mapMutations(['completeOrder']),
         basketToggle() {
             this.$store.commit('basketToggle')
+        },
+        increase () {
+            this.cnt = this.cnt+1
         }
-    }
+    },
+    data () {
+        return {
+            cnt : 1,
+            selectedid:['selectedMenus']
+        }
+    },
+    filters: { 
+        comma (val) { return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ',') 
+    }},  
 }
 </script>
 
@@ -160,8 +178,6 @@ export default {
                  font-size: 25px;
                  font-weight: bold;
                  color: #fc0000;
-
-
             }
         }
 
@@ -188,6 +204,28 @@ export default {
             p{
                 margin: 15px 0px;
                 font-size: 24px;
+            }
+        }
+
+        .total-menu {
+            width: 26%;
+            position:fixed;
+            bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            height: 55px;
+            background-color: #ffffff;
+            box-shadow: 0px -4px 2px rgba(10, 10, 10, 0.05);
+            padding: 0px 15px;
+            line-height: 50px;
+            .basket-cnt {
+                font-size: 20.00px;
+                font-weight: bold;
+            }
+            .basket-price{
+                font-size: 25.00px;
+                font-weight: bold;
+                color: #fc0000;
             }
         }
 

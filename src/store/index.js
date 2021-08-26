@@ -5,8 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    completeMsg: false,
     basket: null,
     selectedMenus: [],
+    basketTotal: 0,
     categories: [
       {
         categoryId: 1,
@@ -119,23 +121,72 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
+    completeOrder() {
+      this.state.completeMsg = !this.state.completeMsg;
+      console.log("??D?D?");
+      setTimeout(() => {
+        this.state.completeMsg = false;
+      }, 3000);
+    },
     basketToggle() {
       this.state.basket = !this.state.basket;
     },
     SET_SELETED_MENU(state, selcetedMenu) {
       state.selectedMenus.push(selcetedMenu);
+      console.log(state.selectedMenus);
     },
-    // CANCEL_MENU(state, id) {
-    //   state.selectedMenus = state.selectedMenus.filter((menu) => {
-    //     console.log(menu.itemId, id);
-    //     menu.itemId !== id;
-    //   });
-    // },
-
     CANCEL_MENU(state, id) {
       state.selectedMenus = state.selectedMenus.filter(
         (menu) => menu.itemId !== id
       );
+    },
+    ORDER_MENU(state) {
+      let _selectedMenus = state.selectedMenus;
+
+      let ids = [];
+
+      for (let i = 0; i < _selectedMenus.length; i++) {
+        ids.push(_selectedMenus[i].itemId);
+      } // 선택한 메뉴 아이디들 push
+      console.log("선택메뉴 아이디들", ids);
+
+      let categories = this.state.categories;
+
+      for (let i = 0; i < this.state.categories[0].categoryItems.length; i++) {
+        let _itemId = categories[0].categoryItems[i].itemId;
+        for (let j = 0; j < ids.length; j++) {
+          if (ids[j] === _itemId) {
+            let _order = categories[0].categoryItems[i];
+            // 가져온 state만 변경가능?
+            console.log(this.state.categories[0].categoryItems);
+            state.categories[0].categoryItems[[_itemId]] = {
+              itemId: _order.itemId,
+              itemName: _order.itemName,
+              itemPrice: _order.itemPrice,
+              itemSoldOutFlag: true,
+              itemImageUrl: _order.itemImageUrl,
+            };
+          }
+        }
+      }
+
+      for (let i = 0; i < this.state.categories[1].categoryItems.length; i++) {
+        let _itemId = categories[1].categoryItems[i].itemId;
+        for (let j = 0; j < ids.length; j++) {
+          if (ids[j] === _itemId) {
+            let _order = categories[1].categoryItems[i];
+            // 가져온 state만 변경가능?
+            console.log(this.state.categories[1].categoryItems);
+            state.categories[1].categoryItems[[_itemId]] = {
+              itemId: _order.itemId,
+              itemName: _order.itemName,
+              itemPrice: _order.itemPrice,
+              itemSoldOutFlag: true,
+              itemImageUrl: _order.itemImageUrl,
+            };
+          }
+        }
+      }
     },
   },
   actions: {
@@ -144,6 +195,9 @@ export default new Vuex.Store({
     },
     cancelMenu({ commit }, id) {
       commit("CANCEL_MENU", id);
+    },
+    orderMenu({ commit }, state) {
+      commit("ORDER_MENU", state);
     },
   },
 

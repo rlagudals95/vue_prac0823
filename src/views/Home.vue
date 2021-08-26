@@ -1,6 +1,10 @@
 <template>
   <div class="home">
     <div class="container">
+      <div v-show="completeMsg" class="complete">
+          <div class="complete-box"></div>
+          <div class="complete-msg">주문이 완료되었습니다.</div>
+      </div>
       <Menus v-for="(category, index ) in categories" :key="index" :category="category" />
       <Basket />
     </div>
@@ -10,7 +14,7 @@
 <script>
 import Menus from "../components/Menus.vue"
 import Basket from "../components/Basket.vue"
-//import {mapMutations} from "vuex"
+import {mapState} from "vuex"
 export default {
   name: "Home",
   components: {Menus,Basket},
@@ -21,6 +25,7 @@ export default {
     // }
   },
   computed : {
+    ...mapState(['completeMsg']),
     categories() {
       return this.$store.state.categories;
     },
@@ -38,4 +43,27 @@ export default {
        height: 100%;
   }
 
+  .complete-box {
+    background-color:#fc0000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    border-radius: 10px; 
+    opacity: 0.8;
+  }
+
+  .complete-msg{
+    color:white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 54px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.9;
+  }
 </style>
