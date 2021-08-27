@@ -3,10 +3,16 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Vue2Editor from "vue2-editor";
+import { VBScrollspyPlugin } from "bootstrap-vue";
 
 Vue.use(Vue2Editor);
+Vue.use(VBScrollspyPlugin);
 
 Vue.config.productionTip = false;
+
+Vue.filter("makeComma", (val) => {
+  return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+});
 
 new Vue({
   router,

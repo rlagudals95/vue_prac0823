@@ -9,6 +9,7 @@ export default new Vuex.Store({
     basket: null,
     selectedMenus: [],
     basketTotal: 0,
+    basketPrice: 0,
     categories: [
       {
         categoryId: 1,
@@ -131,11 +132,35 @@ export default new Vuex.Store({
     basketToggle() {
       this.state.basket = !this.state.basket;
     },
+
     SET_SELETED_MENU(state, selcetedMenu) {
+      let chkMenu;
+
+      if (this.state.selectedMenus.length > 0) {
+        chkMenu = this.state.selectedMenus.findIndex((menu) => {
+          return menu.itemId === selcetedMenu.itemId;
+        });
+      }
+      console.log("중복방지", chkMenu);
+      if (chkMenu != -1 && chkMenu != null) {
+        alert("메뉴 중복은 수량으로 체크해주세요 😃");
+        return;
+      }
       state.selectedMenus.push(selcetedMenu);
-      console.log(state.selectedMenus);
+
+      this.state.basket = true;
+
+      state.basketPrice += selcetedMenu.itemPrice;
     },
     CANCEL_MENU(state, id) {
+      console.log("남은 메뉴", id, this.state.selectedMenus);
+
+      const idx = state.selectedMenus.findIndex((menu) => {
+        return menu.itemId === id;
+      });
+
+      this.state.basketPrice -= this.state.selectedMenus[idx].itemPrice;
+
       state.selectedMenus = state.selectedMenus.filter(
         (menu) => menu.itemId !== id
       );
@@ -147,46 +172,35 @@ export default new Vuex.Store({
 
       for (let i = 0; i < _selectedMenus.length; i++) {
         ids.push(_selectedMenus[i].itemId);
-      } // 선택한 메뉴 아이디들 push
-      console.log("선택메뉴 아이디들", ids);
+      }
 
-      let categories = this.state.categories;
+      let _categories = state.categories;
 
-      for (let i = 0; i < this.state.categories[0].categoryItems.length; i++) {
-        let _itemId = categories[0].categoryItems[i].itemId;
+      for (let i = 0; i < _categories[0].categoryItems.length; i++) {
         for (let j = 0; j < ids.length; j++) {
-          if (ids[j] === _itemId) {
-            let _order = categories[0].categoryItems[i];
-            // 가져온 state만 변경가능?
-            console.log(this.state.categories[0].categoryItems);
-            state.categories[0].categoryItems[[_itemId]] = {
-              itemId: _order.itemId,
-              itemName: _order.itemName,
-              itemPrice: _order.itemPrice,
-              itemSoldOutFlag: true,
-              itemImageUrl: _order.itemImageUrl,
-            };
+          if (ids[j] === _categories[0].categoryItems[i].itemId) {
+            _categories[0].categoryItems[i].itemSoldOutFlag = true;
           }
         }
       }
 
-      for (let i = 0; i < this.state.categories[1].categoryItems.length; i++) {
-        let _itemId = categories[1].categoryItems[i].itemId;
+      for (let i = 0; i < _categories[1].categoryItems.length; i++) {
         for (let j = 0; j < ids.length; j++) {
-          if (ids[j] === _itemId) {
-            let _order = categories[1].categoryItems[i];
-            // 가져온 state만 변경가능?
-            console.log(this.state.categories[1].categoryItems);
-            state.categories[1].categoryItems[[_itemId]] = {
-              itemId: _order.itemId,
-              itemName: _order.itemName,
-              itemPrice: _order.itemPrice,
-              itemSoldOutFlag: true,
-              itemImageUrl: _order.itemImageUrl,
-            };
+          if (ids[j] === _categories[1].categoryItems[i].itemId) {
+            _categories[1].categoryItems[i].itemSoldOutFlag = true;
           }
         }
       }
+    },
+    RESET_SELECTED(state) {
+      state.selectedMenus = [];
+    },
+    ITEM_PRICE_INCREASE(id, state) {
+      const idx = state.selcetedMenus.findIndex((menu) => {
+        return menu.itemId === id;
+      });
+
+      state.selcetedMenu[idx].itemPrice += state.selcetedMenu[idx].itemPrice;
     },
   },
   actions: {
@@ -198,6 +212,12 @@ export default new Vuex.Store({
     },
     orderMenu({ commit }, state) {
       commit("ORDER_MENU", state);
+    },
+    resetSelected({ commit }, state) {
+      commit("RESET_SELECTED", state);
+    },
+    itemPriceIncrease({ commit }, id) {
+      commit("ITEM_PRICE_INCREASE", id);
     },
   },
 

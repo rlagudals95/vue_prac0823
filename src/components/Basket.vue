@@ -16,7 +16,7 @@
             </div>
             <div class="price">
                 <div class="counter-btns">
-                    <div class="increase count-btn">+</div>
+                    <div class="increase count-btn" @click="itemPriceIncrease(selectedMenu.itemId)">+</div>
                     <div class="total-count">{{cnt}}</div>
                     <div class="decrease count-btn">-</div>
                 </div>
@@ -29,11 +29,11 @@
         <div class="total-menu">
             <div class="basket-cnt">총 {{selectedMenus.length}}가지</div>
             <!-- <div class="basket-price">합계 {{basketTotal | comma}}원</div> -->
-            <div class="basket-price">합계 {{basketTotal | comma}}원</div>
+            <div class="basket-price">합계 {{basketPrice | comma }}원</div>
         </div>
         <div class="bottom-btns">
                 <div class="close-btn" @click="basketToggle"><p>닫기</p></div>
-                <div class="order-btn" @click="completeOrder"><p>주문하기</p></div>
+                <div class="order-btn" @click="[completeOrder(),orderMenu(),resetSelected()]"><p>주문하기</p></div>
         </div>
     </div>
 </template>
@@ -44,10 +44,10 @@ import {mapState,mapActions,mapMutations} from 'vuex'
 export default {
     name: 'Basket',
     computed: {
-        ...mapState(['basket','selectedMenus','basketTotal','categories'])
+        ...mapState(['basket','selectedMenus','basketTotal','categories','basketPrice'])
     },
     methods: {
-        ...mapActions(['cancelMenu','orderMenu']),
+        ...mapActions(['cancelMenu','orderMenu','resetSelected','itemPriceIncrease']),
         ...mapMutations(['completeOrder']),
         basketToggle() {
             this.$store.commit('basketToggle')

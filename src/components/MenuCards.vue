@@ -7,8 +7,7 @@
       <div class="item-info">
           <div class="item-desc">
             <p class="item-name">{{categoryItem.itemName}}</p>
-            <p class="item-price">{{categoryItem.itemPrice}}
-               {{categoryItem.itemSoldOutFlag}}
+            <p class="item-price">{{categoryItem.itemPrice | makeComma}}원
             </p>
           </div>
       </div>
@@ -26,6 +25,11 @@ export default {
   },
   computed : {
     ...mapState(['selectedMenus'])
+  },
+  data() {
+    return {
+      
+    }
   }
 }
 </script>

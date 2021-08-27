@@ -53,6 +53,7 @@ export default {
     transform: translate(-50%, -50%);
     border-radius: 10px; 
     opacity: 0.8;
+    z-index: 300;
   }
 
   .complete-msg{
@@ -65,5 +66,6 @@ export default {
     text-align: center;
     font-weight: bold;
     opacity: 0.9;
+    z-index: 301;
   }
 </style>
