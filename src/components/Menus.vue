@@ -1,5 +1,5 @@
 <template>
-    <div class="card-wrap">   
+    <div class="card-wrap" v-bind:class="{ active: this.$store.state.basket }">   
             <MenuCards :categoryItem="categoryItem" v-for="(categoryItem, index ) in category.categoryItems" :key="index"  />
     </div>
 </template>
@@ -11,7 +11,10 @@ export default {
  components: {MenuCards},
  props: ['category'],
  methods: {
- }
+ },
+ computed: {
+ },
+
 }
 </script>
 
@@ -27,4 +30,17 @@ export default {
         display: flex;
         flex-wrap: wrap;
     }
+    // 장바구니 크기와 동일
+     .active {
+        color: white; 
+        background: green;
+        width: 75% !important;
+        height: 100vh;
+        background-image: url('https://cdn.zeplin.io/60d53e6d548b21b2ce573324/assets/abe58885-e813-49ed-8b8b-43b83c0534c8.png');
+        background-size: cover;    
+        padding: 160px 0px 60px 20px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
 </style>

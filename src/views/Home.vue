@@ -68,4 +68,6 @@ export default {
     opacity: 0.9;
     z-index: 301;
   }
+  
+ 
 </style>

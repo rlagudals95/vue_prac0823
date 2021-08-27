@@ -18,7 +18,7 @@
                 <div class="counter-btns">
                     <div class="increase count-btn" @click="itemPriceIncrease(selectedMenu.itemId)">+</div>
                     <div class="total-count">{{cnt}}</div>
-                    <div class="decrease count-btn">-</div>
+                    <div class="decrease count-btn" @click="itemPriceDecrease(selectedMenu.itemId)">-</div>
                 </div>
                 <div class="bucket-total">
                     {{selectedMenu.itemPrice | comma}}원
@@ -47,7 +47,7 @@ export default {
         ...mapState(['basket','selectedMenus','basketTotal','categories','basketPrice'])
     },
     methods: {
-        ...mapActions(['cancelMenu','orderMenu','resetSelected','itemPriceIncrease']),
+        ...mapActions(['cancelMenu','orderMenu','resetSelected','itemPriceIncrease','itemPriceDecrease']),
         ...mapMutations(['completeOrder']),
         basketToggle() {
             this.$store.commit('basketToggle')

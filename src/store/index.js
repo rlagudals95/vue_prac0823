@@ -8,6 +8,7 @@ export default new Vuex.Store({
     completeMsg: false,
     basket: null,
     selectedMenus: [],
+    selectedMenus2: [],
     basketTotal: 0,
     basketPrice: 0,
     categories: [
@@ -148,6 +149,8 @@ export default new Vuex.Store({
       }
       state.selectedMenus.push(selcetedMenu);
 
+      //state.selectedMenus = this.state.selectedMenus2;
+
       this.state.basket = true;
 
       state.basketPrice += selcetedMenu.itemPrice;
@@ -194,13 +197,31 @@ export default new Vuex.Store({
     },
     RESET_SELECTED(state) {
       state.selectedMenus = [];
+      this.state.basketPrice = 0;
     },
-    ITEM_PRICE_INCREASE(id, state) {
-      const idx = state.selcetedMenus.findIndex((menu) => {
+    ITEM_PRICE_INCREASE(state, id) {
+      console.log(this.state.selectedMenus, "id", id);
+      const idx = this.state.selectedMenus.findIndex((menu) => {
+        return menu.itemId === id;
+      });
+      // 밖의 메뉴 가격도 오른다..????
+      this.state.basketPrice += state.selectedMenus[idx].itemPrice;
+      state.selectedMenus[idx].itemPrice += state.selectedMenus[idx].itemPrice;
+    },
+    ITEM_PRICE_DECEASE(state, id) {
+      console.log(this.state.selectedMenus, "id", id);
+      const idx = this.state.selectedMenus.findIndex((menu) => {
         return menu.itemId === id;
       });
 
-      state.selcetedMenu[idx].itemPrice += state.selcetedMenu[idx].itemPrice;
+      this.state.basketPrice -= state.selectedMenus[idx].itemPrice;
+      if (state.selectedMenus[idx].itemPrice === 0) {
+        state.selectedMenus = state.selectedMenus.filter((menu) => {
+          menu.id != id;
+        });
+        return;
+      }
+      state.selectedMenus[idx].itemPrice -= state.selectedMenus[idx].itemPrice;
     },
   },
   actions: {
@@ -213,11 +234,14 @@ export default new Vuex.Store({
     orderMenu({ commit }, state) {
       commit("ORDER_MENU", state);
     },
-    resetSelected({ commit }, state) {
-      commit("RESET_SELECTED", state);
+    resetSelected({ commit }) {
+      commit("RESET_SELECTED");
     },
     itemPriceIncrease({ commit }, id) {
       commit("ITEM_PRICE_INCREASE", id);
+    },
+    itemPriceDecrease({ commit }, id) {
+      commit("ITEM_PRICE_DECEASE", id);
     },
   },
 
