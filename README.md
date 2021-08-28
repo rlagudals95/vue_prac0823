@@ -1,29 +1,17 @@
 # torder_test
 
-## Project setup
+## 어플리케이션 작동방법
 
-```
-npm install
-```
+npm start or yarn serve로 실행
 
-### Compiles and hot-reloads for development
+상품클릭 시 장바구니 생성 혹은 오른쪽 하단의 장바구니 클릭 시 장바구니생성
 
-```
-npm run serve
-```
+다른 상품을 클릭시 장바구니에 차례대로 담김 장바구니에 scroll을 적용하여 여러 음식을 담아도 모두 확인가능
 
-### Compiles and minifies for production
+삭제버튼으로 장바구니에서 삭제 가능
 
-```
-npm run build
-```
+상품중복 선택 시 중복선택 불가 alert과 함께 상품 갯수로 조절 가능함을 알려줌
 
-### Lints and fixes files
+상품 갯수를 조절 할 수 있으며 갯수가 1이하로 내려 갈 시 상품삭제 처리
 
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+상품 주문 시 주문 완료 문구 생성(3초후 사라짐) & 장바구니 비워짐 & 주문한 상품들 sold out 이미지로 처리
