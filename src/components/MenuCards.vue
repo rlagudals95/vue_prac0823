@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- v-bind:class="{ active: this.$store.state.basket }" -->
-  <div class="card-container" @click="setSelectedMenu(categoryItem)" v-bind:class="{ containerActive: this.$store.state.basket }">
+  <div class="card-container"  v-scroll-spy @click="setSelectedMenu(categoryItem)" v-bind:class="{ containerActive: this.$store.state.basket }">
       <div v-show="categoryItem.itemSoldOutFlag" class="sold-out">
         <img src="https://cdn.zeplin.io/60d53e6d548b21b2ce573324/assets/073ad840-85a9-4873-9e10-afdbad2c1655.svg" alt="">
       </div>

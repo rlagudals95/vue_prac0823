@@ -33,6 +33,7 @@ export default {
                 margin: auto 0;
                 font-size: 20px;
                 cursor: pointer;
+                border: none;
             }
 
             .basket-icon {
@@ -43,6 +44,7 @@ export default {
                 height: 20px;
                 border: none;
                 margin-right: 5px;
+                border: none;
                 outline: none !important;    
             }
             //

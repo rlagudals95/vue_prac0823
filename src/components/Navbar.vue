@@ -2,7 +2,7 @@
   <div class="top-line">
       <div class="branch">
         <div class="branch-name">구도로떡볶이</div>
-        <ul class="menu-categories" v-hello v-scroll-spy-active v-scroll-spy-link>
+        <ul class="menu-categories" v-scroll-spy-active v-scroll-spy-link>
             <li class="category ">
                <a class="cursor-pointer">맛있는추억</a>            
             </li>
@@ -21,13 +21,6 @@
             <div class="t_no">12</div>
         </div>
       </div>
-      <!-- <span class="left-line"></span>     -->
-      <!-- <div class="branch2">
-        구도로 떡볶이
-      </div> -->
-      <!-- <div class="bottom-nav">
-          <div class="bucket-btn"></div>
-      </div> -->
   </div>
 </template>
 
@@ -50,6 +43,7 @@ export default {
         border-top: #ff0000 5px solid;
         background-size: 100%; 
         background-repeat: no-repeat;
+     
         
         .branch {
             background-color: #ff0000;

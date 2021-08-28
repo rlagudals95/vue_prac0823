@@ -1,7 +1,7 @@
 <template>
         <div class="card-wrap" v-bind:class="{ active: this.$store.state.basket }">   
             <div class="branch_name">구도로떡볶이</div>
-            <MenuCards v-scroll-spy="{ offset:100 }" :categoryItem="categoryItem" v-for="(categoryItem, index ) in category.categoryItems" :key="index"  />      
+            <MenuCards :categoryItem="categoryItem" v-for="(categoryItem, index ) in category.categoryItems" :key="index"  />      
         </div>
 </template>
 <script>
@@ -53,6 +53,7 @@ export default {
         font-size: 22.50px;
         font-weight: bold;
         padding-left: 15px;
+        
     }
     // 장바구니 크기와 동일
     .active {

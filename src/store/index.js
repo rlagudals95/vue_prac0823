@@ -11,6 +11,7 @@ export default new Vuex.Store({
     selectedMenus2: [],
     basketTotal: 0,
     basketPrice: 0,
+    selectedPrices: [],
     categories: [
       {
         categoryId: 1,
@@ -144,15 +145,16 @@ export default new Vuex.Store({
           return menu.itemId === selcetedMenu.itemId;
         });
       }
-      console.log("중복방지", chkMenu);
+
       if (chkMenu != -1 && chkMenu != null) {
         alert("메뉴 중복은 수량으로 체크해주세요 😃");
         return;
       }
       state.selectedMenus.push(selcetedMenu);
 
-      //state.selectedMenus = this.state.selectedMenus2;
+      this.state.selectedMenus2 = state.selectedMenus;
 
+      console.log("복사", this.state.selectedMenus2);
       this.state.basket = true;
 
       state.basketPrice += selcetedMenu.itemPrice;
@@ -202,30 +204,82 @@ export default new Vuex.Store({
       this.state.basketPrice = 0;
     },
     ITEM_PRICE_INCREASE(state, id) {
-      console.log(this.state.selectedMenus, "id", id);
-      const idx = this.state.selectedMenus.findIndex((menu) => {
-        return menu.itemId === id;
-      });
-      // 밖의 메뉴 가격도 오른다..????
-      this.state.basketPrice += state.selectedMenus[idx].itemPrice;
-      state.selectedMenus[idx].itemPrice += state.selectedMenus[idx].itemPrice;
-    },
-    ITEM_PRICE_DECEASE(state, id) {
-      console.log(this.state.selectedMenus, "id", id);
       const idx = this.state.selectedMenus.findIndex((menu) => {
         return menu.itemId === id;
       });
 
-      this.state.basketPrice -= state.selectedMenus[idx].itemPrice;
-      if (state.selectedMenus[idx].itemPrice === 0) {
-        state.selectedMenus = state.selectedMenus.filter((menu) => {
-          menu.id != id;
-        });
-        return;
+      let selectOption = {
+        selectId: id,
+        selectedPrice: state.selectedMenus[idx].itemPrice,
+        cnt: 2,
+      };
+
+      let _dupchk; // 중복체크
+
+      _dupchk = this.state.selectedPrices.findIndex((s) => {
+        return s.selectId === id;
+      });
+
+      if (_dupchk == -1 && _dupchk != null) {
+        // 중복이 없으면 push
+        this.state.selectedPrices.push(selectOption);
       }
-      state.selectedMenus[idx].itemPrice -= state.selectedMenus[idx].itemPrice;
+
+      let select_idx = this.state.selectedPrices.findIndex((s) => {
+        return s.selectId === id;
+      });
+
+      if (_dupchk == -1 && _dupchk != null) {
+        // 중복이 없으면 push
+        this.state.selectedPrices.push(selectOption);
+      } else {
+        this.state.selectedPrices[select_idx].cnt += 1;
+      }
+
+      // 가격이 계속 가격 += 가격 + 가격으로 되는 것을 방지했다.
+      state.selectedMenus[idx].itemPrice += this.state.selectedPrices[
+        select_idx
+      ].selectedPrice;
+
+      this.state.basketPrice += this.state.selectedPrices[
+        select_idx
+      ].selectedPrice; // 총합
+    },
+    ITEM_PRICE_DECREASE(state, id) {
+      const idx = this.state.selectedMenus.findIndex((menu) => {
+        return menu.itemId === id;
+      });
+
+      // let selectOption = {
+      //   selectId: id,
+      //   selectedPrice: state.selectedMenus[idx].itemPrice,
+      // };
+
+      // let _dupchk; // 중복체크
+
+      // _dupchk = this.state.selectedPrices.findIndex((s) => {
+      //   return s.selectId === id;
+      // });
+
+      // if (_dupchk == -1 && _dupchk != null) {
+      //   this.state.selectedPrices.push(selectOption);
+      // }
+
+      let select_idx = this.state.selectedPrices.findIndex((s) => {
+        return s.selectId === id;
+      });
+
+      // 가격이 계속 가격 += 가격 + 가격으로 되는 것을 방지했다.
+      state.selectedMenus[idx].itemPrice -= this.state.selectedPrices[
+        select_idx
+      ].selectedPrice;
+
+      this.state.basketPrice -= this.state.selectedPrices[
+        select_idx
+      ].selectedPrice; // 총합
     },
   },
+
   actions: {
     setSelectedMenu({ commit }, selectedMenus) {
       commit("SET_SELETED_MENU", selectedMenus);

@@ -44,7 +44,7 @@ import {mapState,mapActions,mapMutations} from 'vuex'
 export default {
     name: 'Basket',
     computed: {
-        ...mapState(['basket','selectedMenus','basketTotal','categories','basketPrice'])
+        ...mapState(['basket','selectedMenus','basketTotal','categories','basketPrice','selectedMenus2','selectedPrices'])
     },
     methods: {
         ...mapActions(['cancelMenu','orderMenu','resetSelected','itemPriceIncrease','itemPriceDecrease']),
@@ -69,6 +69,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    
+    .basket-wrap::-webkit-scrollbar {
+    display: none;
+    }
+
     .basket-wrap{
         z-index: 300;
         width: 23%;
@@ -84,7 +89,7 @@ export default {
         padding: 30px 5px; 
         border-bottom: 2px solid #cccccc;
         transition : 2.5s ease all;
-
+        overflow: scroll;
         
         .title {
             margin-top: 30.00px;
