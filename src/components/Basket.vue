@@ -33,7 +33,7 @@
         </div>
         <div class="bottom-btns">
                 <div class="close-btn" @click="basketToggle"><p>닫기</p></div>
-                <div class="order-btn" @click="[completeOrder(),orderMenu(),resetSelected()]"><p>주문하기</p></div>
+                <div class="order-btn" @click="[completeOrder(),orderMenu(),resetSelected(),basketToggle()]"><p>주문하기</p></div>
         </div>
     </div>
 </template>
@@ -70,8 +70,8 @@ export default {
 
 <style lang="scss" scoped>
     .basket-wrap{
-        z-index: 200;
-        width: 26%;
+        z-index: 300;
+        width: 23%;
         height: 100%;
         background-color: #f5f5f5;
         position: fixed;
@@ -184,7 +184,7 @@ export default {
         .bottom-btns {
             background-color: #fc0000;
             height: 60px;
-            width: 26%;
+            width: 23%;
             position: fixed;
             bottom: 0;
             right: 0;
@@ -208,7 +208,7 @@ export default {
         }
 
         .total-menu {
-            width: 26%;
+            width: 23%;
             position:fixed;
             bottom: 60px;
             display: flex;

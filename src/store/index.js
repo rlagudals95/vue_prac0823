@@ -15,6 +15,7 @@ export default new Vuex.Store({
       {
         categoryId: 1,
         categoryName: "맛있는 추억",
+        scroll: 0,
         categoryItems: [
           {
             itemId: 1,
@@ -69,6 +70,7 @@ export default new Vuex.Store({
       {
         categoryId: 2,
         categoryName: "튀김",
+        scroll: 100,
         categoryItems: [
           {
             itemId: 7,
@@ -125,7 +127,7 @@ export default new Vuex.Store({
   mutations: {
     completeOrder() {
       this.state.completeMsg = !this.state.completeMsg;
-      console.log("??D?D?");
+
       setTimeout(() => {
         this.state.completeMsg = false;
       }, 3000);

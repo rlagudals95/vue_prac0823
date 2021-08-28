@@ -1,18 +1,30 @@
 <template>
   <div class="top-line">
       <div class="branch">
-        <div class="branch-name">구도로 떡볶이</div>
-        <ul class="menu-categories">
-            <li class="category">튀김</li>
-            <li class="category">과일&디저트</li>
-            <li class="category">탕</li>
-            <li class="category">맛있는추억</li>
+        <div class="branch-name">구도로떡볶이</div>
+        <ul class="menu-categories" v-hello v-scroll-spy-active v-scroll-spy-link>
+            <li class="category ">
+               <a class="cursor-pointer">맛있는추억</a>            
+            </li>
+            <li class="category ">
+                <a class="cursor-pointer">튀김</a>            
+            </li>
+            <li class="category ">
+                <a class="">탕</a>               
+            </li>
+            <li class="category ">
+                <a class="">과일&디저트</a>             
+            </li>
         </ul>
+        <div class="table_no">
+            <div class="t_name">테이블명</div>
+            <div class="t_no">12</div>
+        </div>
       </div>
-      <span class="left-line"></span>    
-      <div class="branch2">
+      <!-- <span class="left-line"></span>     -->
+      <!-- <div class="branch2">
         구도로 떡볶이
-      </div>
+      </div> -->
       <!-- <div class="bottom-nav">
           <div class="bucket-btn"></div>
       </div> -->
@@ -29,21 +41,25 @@ export default {
 <style lang='scss' scoped>
     .top-line{
         width: 100%;
-        height: 5px;
-        background-color: #ff0000;
+        height: 90px;
+        background-color: blue;
         position: fixed;
         top: 0px;
         z-index: 201;
+        background-image: url('https://cdn.zeplin.io/60d53e6d548b21b2ce573324/assets/abe58885-e813-49ed-8b8b-43b83c0534c8.png');
+        border-top: #ff0000 5px solid;
+        background-size: 100%; 
+        background-repeat: no-repeat;
         
         .branch {
             background-color: #ff0000;
-            height: 68px;
-            width: 134px;  
+            height: 70px;
+            width: 140px;  
             position: fixed;
             top: 0;
             left: 20px;
             border-radius: 0px 0px 10px 10px;  
-            box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.3);
             text-align: center;
             padding-top: 30px;
 
@@ -66,6 +82,33 @@ export default {
         .branch-name{
             color: white;
             font-weight: bold;
+            font-size: 19px;
+        }
+
+        .table_no {
+            background-color: #ff0000;
+            height: 80px;
+            width: 140px;  
+            position: fixed;
+            top: 0;
+            right: 20px;
+            border-radius: 0px 0px 10px 10px;  
+           
+            text-align: center;
+            padding-top: 5px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            
+            .t_name{
+                font-size: 13px;
+
+            }
+            .t_no{
+                margin-top: -10px;
+                font-size: 53px;
+            }
         }
 
         .branch2 {

@@ -3,10 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import Vue2Editor from "vue2-editor";
-import { VBScrollspyPlugin } from "bootstrap-vue";
+//import { VBScrollspyPlugin } from "bootstrap-vue";
+import VueScrollSpy from "vue2-scrollspy";
 
 Vue.use(Vue2Editor);
-Vue.use(VBScrollspyPlugin);
+//Vue.use(VBScrollspyPlugin);
+Vue.use(VueScrollSpy);
 
 Vue.config.productionTip = false;
 
