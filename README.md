@@ -1,6 +1,6 @@
 # 어플리케이션 작동방법
 
-### npm start or yarn serve로 실행
+### npm install or yarn install > npm  start or yarn serve로 실행
 
 ### 상품클릭 시 장바구니 생성 혹은 오른쪽 하단의 장바구니 클릭 시 장바구니생성
 
