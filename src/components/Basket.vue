@@ -17,7 +17,7 @@
             <div class="price">
                 <div class="counter-btns">
                     <div class="increase count-btn" @click="itemPriceIncrease(selectedMenu.itemId)">+</div>
-                    <div class="total-count">{{cnt}}</div>
+                    <div class="total-count">{{selectedMenu.cnt}}</div>
                     <div class="decrease count-btn" @click="itemPriceDecrease(selectedMenu.itemId)">-</div>
                 </div>
                 <div class="bucket-total">

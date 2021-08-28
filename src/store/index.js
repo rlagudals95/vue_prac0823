@@ -16,7 +16,6 @@ export default new Vuex.Store({
       {
         categoryId: 1,
         categoryName: "맛있는 추억",
-        scroll: 0,
         categoryItems: [
           {
             itemId: 1,
@@ -71,7 +70,6 @@ export default new Vuex.Store({
       {
         categoryId: 2,
         categoryName: "튀김",
-        scroll: 100,
         categoryItems: [
           {
             itemId: 7,
@@ -150,7 +148,22 @@ export default new Vuex.Store({
         alert("메뉴 중복은 수량으로 체크해주세요 😃");
         return;
       }
-      state.selectedMenus.push(selcetedMenu);
+      if (selcetedMenu.itemSoldOutFlag === true) {
+        alert("🙏선택하신 메뉴가 품절입니다.");
+        return;
+      }
+      console.log("이거 선택", selcetedMenu);
+
+      let selectOption = {
+        itemId: selcetedMenu.itemId,
+        itemImageUrl: selcetedMenu.itemImageUrl,
+        itemName: selcetedMenu.itemName,
+        itemPrice: selcetedMenu.itemPrice,
+        itemSoldOutFlag: selcetedMenu.itemSoldOutFlag,
+        cnt: 1,
+      };
+
+      state.selectedMenus.push(selectOption);
 
       this.state.selectedMenus2 = state.selectedMenus;
 
@@ -208,10 +221,11 @@ export default new Vuex.Store({
         return menu.itemId === id;
       });
 
+      this.state.selectedMenus[idx].cnt += 1; //갯수 증가
+
       let selectOption = {
         selectId: id,
         selectedPrice: state.selectedMenus[idx].itemPrice,
-        cnt: 2,
       };
 
       let _dupchk; // 중복체크
@@ -250,20 +264,19 @@ export default new Vuex.Store({
         return menu.itemId === id;
       });
 
-      // let selectOption = {
-      //   selectId: id,
-      //   selectedPrice: state.selectedMenus[idx].itemPrice,
-      // };
-
-      // let _dupchk; // 중복체크
-
-      // _dupchk = this.state.selectedPrices.findIndex((s) => {
-      //   return s.selectId === id;
-      // });
-
-      // if (_dupchk == -1 && _dupchk != null) {
-      //   this.state.selectedPrices.push(selectOption);
-      // }
+      console.log(
+        "이거 카운트 내리자",
+        id,
+        "확인",
+        this.state.selectedMenus[idx].cnt
+      );
+      if (this.state.selectedMenus[idx].cnt === 1) {
+        console.log("삭제");
+        this.state.selectedMenus = this.state.selectedMenus.filter((menu) => {
+          menu.id != id;
+        });
+      }
+      this.state.selectedMenus[idx].cnt -= 1; //갯수 증가
 
       let select_idx = this.state.selectedPrices.findIndex((s) => {
         return s.selectId === id;
@@ -297,7 +310,7 @@ export default new Vuex.Store({
       commit("ITEM_PRICE_INCREASE", id);
     },
     itemPriceDecrease({ commit }, id) {
-      commit("ITEM_PRICE_DECEASE", id);
+      commit("ITEM_PRICE_DECREASE", id);
     },
   },
 

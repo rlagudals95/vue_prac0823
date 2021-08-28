@@ -16,7 +16,8 @@
                 <a class="">과일&디저트</a>             
             </li>
         </ul>
-        <div class="table_no">
+        <span class="sub_branch">구로도 통닭(부평본점)</span>
+        <div class="table_no">            
             <div class="t_name">테이블명</div>
             <div class="t_no">12</div>
         </div>
@@ -113,6 +114,14 @@ export default {
             font-size: 22.50px;
             font-weight: bold;
             padding-left: 20px;
+        }
+
+        .sub_branch{
+            color: white;
+            font-size: 5px;
+            position:fixed;
+            top: 10px;
+            right: 170px;
         }
 
         .left-line {
