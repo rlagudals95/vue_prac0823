@@ -161,6 +161,7 @@ export default new Vuex.Store({
         itemPrice: selcetedMenu.itemPrice,
         itemSoldOutFlag: selcetedMenu.itemSoldOutFlag,
         cnt: 1,
+        basic_price: selcetedMenu.itemPrice,
       };
 
       state.selectedMenus.push(selectOption);

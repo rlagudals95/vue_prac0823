@@ -10,8 +10,8 @@
             <div class="menu-options">
                 <div class="option">
                     <div class="bucket-category">기본</div>  
-                    <div class="bucket-count">{{selectedMenu.cnt}}개</div>
-                    <div class="bucket-price">{{selectedMenu.itemPrice | comma}}원</div>
+                    <div class="bucket-count">1개</div>
+                    <div class="bucket-price">{{selectedMenu.basic_price | comma}}원</div>
                 </div>
             </div>
             <div class="price">
