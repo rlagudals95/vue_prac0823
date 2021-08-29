@@ -18,5 +18,5 @@
 #### 상품 주문 시 주문 완료 문구 생성(3초후 사라짐) & 장바구니 비워짐 & 주문한 상품들 sold out 이미지로 처리(품절된 메뉴는 장바구니에 담기 불가 alert 띄움)
 ![3](https://user-images.githubusercontent.com/76252074/131237063-4a0c91bd-76e6-4815-b96f-cf34350ab88d.jpg)
 
-### 상단 navigation의 맛있는 추억 & 튀김에 spyscroll을 적용해 클릭 시 해당 카테고리로 스크롤 이동 구현
+### 상단 navigation에 맛있는 추억 & 튀김에 spyscroll을 적용해 클릭 시 해당 카테고리로 스크롤 이동 구현
 ![4](https://user-images.githubusercontent.com/76252074/131237067-9fdcb9e4-3832-49a6-ada1-de2df111d53c.jpg)
