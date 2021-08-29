@@ -2,12 +2,11 @@
 # 어플리케이션 작동방법
 
 ### npm install or yarn install > npm  start or yarn serve로 실행
-![1](https://user-images.githubusercontent.com/76252074/131237013-721755d6-3dfe-4081-971a-6e3ffed3be6b.jpg)![2](https://user-images.githubusercontent.com/76252074/131237019-6d8e3b0b-0bb4-497c-be7a-62728956ccaa.jpg)
-
+![1](https://user-images.githubusercontent.com/76252074/131237013-721755d6-3dfe-4081-971a-6e3ffed3be6b.jpg)
 
 ### 상품클릭 시 장바구니 생성 혹은 오른쪽 하단의 장바구니 클릭 시 장바구니생성
 
-![Uploading 2.jpg…]()
+![2](https://user-images.githubusercontent.com/76252074/131237019-6d8e3b0b-0bb4-497c-be7a-62728956ccaa.jpg)
 
 ### 다른 상품을 클릭시 장바구니에 차례대로 담김 장바구니에 scroll을 적용하여 여러 음식을 담아도 모두 확인가능
 
