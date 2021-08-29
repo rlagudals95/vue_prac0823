@@ -10,7 +10,7 @@
             <div class="menu-options">
                 <div class="option">
                     <div class="bucket-category">기본</div>  
-                    <div class="bucket-count">1개</div>
+                    <div class="bucket-count">{{selectedMenu.cnt}}개</div>
                     <div class="bucket-price">{{selectedMenu.itemPrice | comma}}원</div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="bottom-btns">
                 <div class="close-btn" @click="basketToggle"><p>닫기</p></div>
-                <div class="order-btn" @click="[completeOrder(),orderMenu(),resetSelected(),basketToggle()]"><p>주문하기</p></div>
+                <div class="order-btn" @click="[completeOrder(),orderMenu(),resetSelected()]"><p>주문하기</p></div>
         </div>
     </div>
 </template>

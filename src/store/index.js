@@ -196,21 +196,31 @@ export default new Vuex.Store({
 
       let _categories = state.categories;
 
-      for (let i = 0; i < _categories[0].categoryItems.length; i++) {
-        for (let j = 0; j < ids.length; j++) {
-          if (ids[j] === _categories[0].categoryItems[i].itemId) {
-            _categories[0].categoryItems[i].itemSoldOutFlag = true;
+      for (let q = 0; q < _categories.length; q++) {
+        for (let i = 0; i < _categories[q].categoryItems.length; i++) {
+          for (let j = 0; j < ids.length; j++) {
+            if (ids[j] === _categories[q].categoryItems[i].itemId) {
+              _categories[q].categoryItems[i].itemSoldOutFlag = true;
+            }
           }
         }
       }
 
-      for (let i = 0; i < _categories[1].categoryItems.length; i++) {
-        for (let j = 0; j < ids.length; j++) {
-          if (ids[j] === _categories[1].categoryItems[i].itemId) {
-            _categories[1].categoryItems[i].itemSoldOutFlag = true;
-          }
-        }
-      }
+      //   for (let i = 0; i < _categories[0].categoryItems.length; i++) {
+      //     for (let j = 0; j < ids.length; j++) {
+      //       if (ids[j] === _categories[0].categoryItems[i].itemId) {
+      //         _categories[0].categoryItems[i].itemSoldOutFlag = true;
+      //       }
+      //     }
+      //   }
+
+      // for (let i = 0; i < _categories[1].categoryItems.length; i++) {
+      //   for (let j = 0; j < ids.length; j++) {
+      //     if (ids[j] === _categories[1].categoryItems[i].itemId) {
+      //       _categories[1].categoryItems[i].itemSoldOutFlag = true;
+      //     }
+      //   }
+      // }
     },
     RESET_SELECTED(state) {
       state.selectedMenus = [];
