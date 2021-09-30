@@ -13,6 +13,7 @@
 //import Navigation from "./components/Navigation.vue"
 import Navbar from "./components/Navbar.vue"
 import BottomNav from "./components/BottomNav.vue"
+import axios from 'axios'
 
 export default {
   name: "app",
@@ -22,11 +23,24 @@ export default {
 
     };
   },
-  created() {
+  created:function(){
+    // using JSONPlaceholder
+    const baseURI = 'http://localhost:8060';
+    axios.get(`${baseURI}`)
+    .then((result) => {
+    console.log(result.length)
+    for (let i = 0; i < result.data.length; i++){
+      console.log(result.data[i].workerman_admin_name)
+    }
+
+    this.datas = result.data
+    }
+)},
+  mounted() {},
+  methods: {
+    
 
   },
-  mounted() {},
-  methods: {},
   watch: {},
 };
 </script>
